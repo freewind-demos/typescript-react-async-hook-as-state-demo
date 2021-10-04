@@ -1,12 +1,14 @@
 import React from 'react';
-import {useAsync} from 'react-async-hook';
-import fetchRemoteMessage from './fetchRemoteMessage';
+import {useRemoteMessage} from './api';
+import {Inner} from './Inner';
 
 export default function Hello() {
-  const result = useAsync(fetchRemoteMessage, ['RemoteHello1'])
+  const result = useRemoteMessage();
   return <div>
     {result.loading && <div>Loading...</div>}
     {result.error && <div>Error: {result.error?.message}</div>}
     {result.result !== undefined && <div>Hello, {result.result}</div>}
+    <hr/>
+    <Inner />
   </div>;
 };
